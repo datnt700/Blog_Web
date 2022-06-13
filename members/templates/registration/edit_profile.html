@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+    <h1 a>Edit Setting...</h1>
+    <br/>
+    <br/>
+    {{ user.profile.bio }}
+    {% comment %} user first because is user model and we're getting all the stuff on this page from the user model {% endcomment %}
+    {% comment %} .Profile that's what we called our model class profile and inside we can reference anything that's in that model {% endcomment %}
+    <br/>
+    <br/>
+    <div class method="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {% comment %} CSRF middleware token, create a value of this long sort a random number a key thing {% endcomment %}
+            {{ form.as_p }}  {% comment %} Django form system {% endcomment %}
+            <button class="btn btn-secondary">Update Profile</button>
+        </div>
+    {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Create a new blog category!{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1 a>Add Category</h1>
+        <br/>
+        <br/>
+        <div class method="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {% comment %} CSRF middleware token, create a value of this long sort a random number a key thing {% endcomment %}
+                {{ form.as_p }}  {% comment %} Django form system {% endcomment %}
+                <button class="btn btn-secondary">Add Category</button>
+            </div>
+        {% else %}
+            YOU'RE NOT ALLOWED HERE!
+        {% endif %}
+    {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile Page...!{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == profile.user.id %}
+            <h1 a>Edit Profile Page</h1>
+            <br/>
+            <br/>
+            <div class method="form-group">
+                {% comment %} this allow form to sort of accept images {% endcomment %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% comment %} CSRF middleware token, create a value of this long sort a random number a key thing {% endcomment %}
+                    {{ form.as_p }}  {% comment %} Django form system {% endcomment %}
+                    <button class="btn btn-secondary">Update Profile Page</button>
+                </div>
+            {% else %}
+                YOU'RE NOT ALLOWED HERE!
+            {% endif %}
+        {% else %}
+            You're not allowed to edit! (and you know it...)
+        {% endif %}
+    {% endblock %}

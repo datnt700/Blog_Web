@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Post</h1>
+    <ul>
+        {% for post in object_list %}
+            <li>
+                <a href ="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+                - <a href ="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+                {% comment %} slugify: removes whitespace spaces and replaces them with a dash  {% endcomment %}
+                -{{ post.author.first_name }}
+                {{ post.author.last_name }}
+                {{ post.post_date }} <small>
+                {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                        - <a href="{% url 'update_post' post.pk %}">Edit</a>
+                        <a href="{% url 'delete_post' post.pk %}">Delete</a>
+                        {% comment %} delete_post because in url.py we called that {% endcomment %}
+                    {% endif %}
+                {% endif %}
+            </small>
+            {% comment %} primary key of the post {% endcomment %}
+            <br/>
+            <!-- linebreaks -->
+            {{ post.snippet }}
+            {% comment %} {{ post.body|slice:"200"|safe }} {% endcomment %}
+            {% comment %} allow html {% endcomment %}
+            <!-- listitem  -->
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Delete blog post!{% endblock %}
+{% block content %}
+    {% if user.id == post.author.id %}
+        <h1 a>Delete Post...</h1>
+        {% if user.id == post.author.id %}
+            <br/>
+            <br/>
+            <h3>Delete: {{ post.title }}</h3>
+            <div class method="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <strong>Are you sure?!</strong>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-secondary">Delete Post!</button>
+                </div>
+            {% else %}
+                You're not allowed
+            {% endif %}
+        {% else %}
+            You're not allowed
+        {% endif %}
+    {% else %}
+        You're not allowed
+        {%
+    {% elif %}
+        %}
+    {% endblock %}
+    {% comment %} 3 thing to creaet a page
+    1. template file
+    2. view
+    3. url {% endcomment %}
